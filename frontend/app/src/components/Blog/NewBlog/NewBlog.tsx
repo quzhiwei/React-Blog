@@ -5,11 +5,11 @@ import {
   UserOutlined,
   DownOutlined,
 } from "@ant-design/icons";
-
+import style from "./index.module.scss";
 export default class NewBlog extends Component {
   state = {
     blogContent: "",
-    tag: 'Mood',
+    tag: "Mood",
     items: [
       {
         label: "Daily",
@@ -27,32 +27,27 @@ export default class NewBlog extends Component {
         label: "Others",
         key: "4",
       },
-    ]
+    ],
   };
   onChange = (e: any) => {
     console.log("Change:", e.target.value);
     this.setState({ blogContent: e.target.value });
   };
-
   submit = () => {
     console.log(this.state.blogContent);
     this.setState({ blogContent: "" });
   };
-  updateTag = (e:any)=>{
+  updateTag = (e: any) => {
     console.log(this.state.items[e.key].label);
-    this.setState({tag:this.state.items[e.keys].label})
-  }
+    this.setState({ tag: this.state.items[Number(e.key)-1].label });
+  };
   render() {
-    const { blogContent, tag ,items} = this.state;
-    const menu = (
-      <Menu
-      onClick={this.updateTag}
-      items={items}
-      />
-    );
+    const { blogContent, tag, items } = this.state;
+    const { app ,blogOptions, options, submit, tagDropdown , upload} = style;
+    const menu = <Menu onClick={this.updateTag} items={items} />;
     const { TextArea } = Input;
     return (
-      <div>
+      <div className={app}>
         <div>
           <Avatar size="large" icon={<UserOutlined />} />
           <TextArea
@@ -67,21 +62,20 @@ export default class NewBlog extends Component {
           />
           <br />
         </div>
-        <div id="newBlogUtil">
-          <div id="options"  >
-            <Dropdown
-              overlay={menu}
-            >
+        <div className={blogOptions}>
+          <div className={options}>
+            <div className={tagDropdown}>
+            <Dropdown overlay={menu} >
               <a onClick={(e) => e.preventDefault()}>
-                <Space>
                   {tag}
-                  <DownOutlined />
-                </Space>
               </a>
             </Dropdown>
-            <PlusCircleFilled />
+            </div>
+            <div className={upload}>
+              <PlusCircleFilled />
+            </div>
           </div>
-          <div id="submit">
+          <div className={submit}>
             <Button style={{ margin: "auto" }} onClick={this.submit}>
               Submit
             </Button>
