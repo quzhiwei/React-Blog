@@ -10,7 +10,7 @@ export default class Main extends Component {
         <Layout>
           <Header>header</Header>
           <Layout>
-            <Sider><Toolbar /></Sider>
+            <Sider theme='light'><Toolbar /></Sider>
             <Content><BlogContainer /></Content>
           </Layout>
           <Footer>footer</Footer>

@@ -1,7 +1,11 @@
 export type BlogData = {
   user:string,
   content:string,
-  tag?:blogSection
 }
 
-type blogSection= 'daily'|'gaming'|'music'|'others'
+export type BlogCollection = {
+  key:blogSection,
+  value:BlogData[]
+}
+
+type blogSection= 'Daily'|'Gaming'|'Music'|'Others'
