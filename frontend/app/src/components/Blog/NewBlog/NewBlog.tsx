@@ -6,10 +6,11 @@ import {
   DownOutlined,
 } from "@ant-design/icons";
 import style from "./index.module.scss";
+import { BlogData } from "../../../models/model";
 export default class NewBlog extends Component {
   state = {
     blogContent: "",
-    tag: "Mood",
+    blogSection: 'Mood',
     items: [
       {
         label: "Daily",
@@ -30,26 +31,31 @@ export default class NewBlog extends Component {
     ],
   };
   onChange = (e: any) => {
-    console.log("Change:", e.target.value);
     this.setState({ blogContent: e.target.value });
   };
   submit = () => {
     console.log(this.state.blogContent);
+    const newBlog:BlogData = {
+      user:'test user',
+      content: this.state.blogContent,
+    }
+    //update the blogCollection list.
     this.setState({ blogContent: "" });
   };
-  updateTag = (e: any) => {
-    console.log(this.state.items[e.key].label);
-    this.setState({ tag: this.state.items[Number(e.key)-1].label });
+  updateSection = (e: any) => {
+    this.setState({ blogSection: this.state.items[Number(e.key)-1].label });
   };
   render() {
-    const { blogContent, tag, items } = this.state;
-    const { app ,blogOptions, options, submit, tagDropdown , upload} = style;
-    const menu = <Menu onClick={this.updateTag} items={items} />;
+    const { blogContent, blogSection, items } = this.state;
+    const { app ,blogOptions, options, submit, tagDropdown , upload, blogTextBox, userAvatar} = style;
+    const menu = <Menu onClick={this.updateSection} items={items} />;
     const { TextArea } = Input;
     return (
       <div className={app}>
-        <div>
+        <div className={blogTextBox}>
+          <div className={userAvatar}>
           <Avatar size="large" icon={<UserOutlined />} />
+          </div>
           <TextArea
             value={blogContent}
             showCount={true}
@@ -67,7 +73,7 @@ export default class NewBlog extends Component {
             <div className={tagDropdown}>
             <Dropdown overlay={menu} >
               <a onClick={(e) => e.preventDefault()}>
-                  {tag}
+                  {blogSection}
               </a>
             </Dropdown>
             </div>
