@@ -12,8 +12,8 @@ export default class Section extends Component<any> {
         <h2>{key}11</h2>
         <hr />
         </div>
-        {value.map((blog: BlogData) => {
-          return <Blog blog={blog} />;
+        {value.map((blog: BlogData,index:number) => {
+          return <Blog blog={blog} key={index}/>;
         })}
       </div>
     );

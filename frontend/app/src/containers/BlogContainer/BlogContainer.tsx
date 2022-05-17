@@ -63,8 +63,8 @@ export default class BlogContainer extends Component {
     return (
       <div>
         <NewBlog />
-        {BlogCollection.map(collection=>{
-          return <Section sectionData={collection}/>
+        {BlogCollection.map((collection:BlogCollection,index:number)=>{
+          return <Section sectionData={collection} key={index}/>
         })}
       </div>
     );
