@@ -7,10 +7,12 @@ import {
 } from "@ant-design/icons";
 import style from "./index.module.scss";
 import { BlogData } from "../../../models/model";
+import Blog from "../Blog/Blog";
 export default class NewBlog extends Component {
   state = {
     blogContent: "",
-    blogSection: 'Mood',
+    blogUser: "",
+    blogSection: "Mood",
     items: [
       {
         label: "Daily",
@@ -30,31 +32,43 @@ export default class NewBlog extends Component {
       },
     ],
   };
-  onChange = (e: any) => {
+  updateContent = (e: any) => {
     this.setState({ blogContent: e.target.value });
   };
+  updateName = (e: any) => {
+    this.setState({ blogUser: e.target.value });
+  };
   submit = () => {
-    console.log(this.state.blogContent);
-    const newBlog:BlogData = {
-      user:'test user',
+    const newBlog: BlogData = {
+      user: this.state.blogUser,
       content: this.state.blogContent,
-    }
+    };
     //update the blogCollection list.
-    this.setState({ blogContent: "" });
+    this.setState({ blogContent: "", blogUser: "" });
   };
   updateSection = (e: any) => {
-    this.setState({ blogSection: this.state.items[Number(e.key)-1].label });
+    this.setState({ blogSection: this.state.items[Number(e.key) - 1].label });
   };
   render() {
-    const { blogContent, blogSection, items } = this.state;
-    const { app ,blogOptions, options, submit, tagDropdown , upload, blogTextBox, userAvatar} = style;
+    const { blogContent, blogSection, items, blogUser } = this.state;
+    const {
+      app,
+      blogOptions,
+      options,
+      submit,
+      tagDropdown,
+      upload,
+      blogTextBox,
+      userAvatar,
+      user,
+    } = style;
     const menu = <Menu onClick={this.updateSection} items={items} />;
     const { TextArea } = Input;
     return (
       <div className={app}>
         <div className={blogTextBox}>
           <div className={userAvatar}>
-          <Avatar size="large" icon={<UserOutlined />} />
+            <Avatar size="large" icon={<UserOutlined />} />
           </div>
           <TextArea
             value={blogContent}
@@ -63,19 +77,26 @@ export default class NewBlog extends Component {
             style={{ width: 500, margin: "auto" }}
             placeholder="Say something..."
             autoSize={{ minRows: 2, maxRows: 6 }}
-            onChange={this.onChange}
+            onChange={this.updateContent}
             size={"small"}
           />
           <br />
         </div>
         <div className={blogOptions}>
           <div className={options}>
+            <div className={user}>
+              <Input
+                size="small"
+                placeholder="Anonymous"
+                value={blogUser}
+                onChange={this.updateName}
+                maxLength={12}
+              />
+            </div>
             <div className={tagDropdown}>
-            <Dropdown overlay={menu} >
-              <a onClick={(e) => e.preventDefault()}>
-                  {blogSection}
-              </a>
-            </Dropdown>
+              <Dropdown overlay={menu}>
+                <a onClick={(e) => e.preventDefault()}>{blogSection}</a>
+              </Dropdown>
             </div>
             <div className={upload}>
               <PlusCircleFilled />
