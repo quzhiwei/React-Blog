@@ -10,7 +10,7 @@ import { BlogData } from "../../../models/model";
 export default class NewBlog extends Component {
   state = {
     blogContent: "",
-    blogSection: 'Mood',
+    blogSection: "Mood",
     items: [
       {
         label: "Daily",
@@ -35,26 +35,35 @@ export default class NewBlog extends Component {
   };
   submit = () => {
     console.log(this.state.blogContent);
-    const newBlog:BlogData = {
-      user:'test user',
+    const newBlog: BlogData = {
+      user: "test user",
       content: this.state.blogContent,
-    }
+    };
     //update the blogCollection list.
     this.setState({ blogContent: "" });
   };
   updateSection = (e: any) => {
-    this.setState({ blogSection: this.state.items[Number(e.key)-1].label });
+    this.setState({ blogSection: this.state.items[Number(e.key) - 1].label });
   };
   render() {
     const { blogContent, blogSection, items } = this.state;
-    const { app ,blogOptions, options, submit, tagDropdown , upload, blogTextBox, userAvatar} = style;
+    const {
+      app,
+      blogOptions,
+      options,
+      submit,
+      tagDropdown,
+      upload,
+      blogTextBox,
+      userAvatar,
+    } = style;
     const menu = <Menu onClick={this.updateSection} items={items} />;
     const { TextArea } = Input;
     return (
       <div className={app}>
         <div className={blogTextBox}>
           <div className={userAvatar}>
-          <Avatar size="large" icon={<UserOutlined />} />
+            <Avatar size="large" icon={<UserOutlined />} />
           </div>
           <TextArea
             value={blogContent}
@@ -71,11 +80,9 @@ export default class NewBlog extends Component {
         <div className={blogOptions}>
           <div className={options}>
             <div className={tagDropdown}>
-            <Dropdown overlay={menu} >
-              <a onClick={(e) => e.preventDefault()}>
-                  {blogSection}
-              </a>
-            </Dropdown>
+              <Dropdown overlay={menu}>
+                <a onClick={(e) => e.preventDefault()}>{blogSection}</a>
+              </Dropdown>
             </div>
             <div className={upload}>
               <PlusCircleFilled />

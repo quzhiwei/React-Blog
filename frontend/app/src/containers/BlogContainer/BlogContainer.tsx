@@ -6,10 +6,10 @@ import { BlogCollection } from "../../models/model";
 export default class BlogContainer extends Component {
   state = {};
   render() {
-    const BlogCollection:BlogCollection[] = [
+    const BlogCollection: BlogCollection[] = [
       {
-        key:'Daily',
-        value:[
+        key: "Daily",
+        value: [
           {
             user: "Jas",
             content: "hello my name is Jas ",
@@ -18,11 +18,11 @@ export default class BlogContainer extends Component {
             user: "Kin",
             content: "hello my name is Kin ",
           },
-        ]
+        ],
       },
       {
-        key:'Gaming',
-        value:[
+        key: "Gaming",
+        value: [
           {
             user: "Azz",
             content: "Playing league",
@@ -31,11 +31,11 @@ export default class BlogContainer extends Component {
             user: "ZDXC",
             content: "Playing 4399",
           },
-        ]
+        ],
       },
       {
-        key:'Music',
-        value:[
+        key: "Music",
+        value: [
           {
             user: "Azz",
             content: "I like rock ",
@@ -44,11 +44,11 @@ export default class BlogContainer extends Component {
             user: "ZDXC",
             content: "I like jazz",
           },
-        ]
+        ],
       },
       {
-        key:'Others',
-        value:[
+        key: "Others",
+        value: [
           {
             user: "Azz",
             content: "Random msg1",
@@ -57,14 +57,14 @@ export default class BlogContainer extends Component {
             user: "ZDXC",
             content: "Random mag2",
           },
-        ]
+        ],
       },
-    ]
+    ];
     return (
       <div>
         <NewBlog />
-        {BlogCollection.map((collection:BlogCollection,index:number)=>{
-          return <Section sectionData={collection} key={index}/>
+        {BlogCollection.map((collection: BlogCollection, index: number) => {
+          return <Section sectionData={collection} key={index} />;
         })}
       </div>
     );
