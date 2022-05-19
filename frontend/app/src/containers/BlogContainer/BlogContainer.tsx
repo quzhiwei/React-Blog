@@ -5,6 +5,10 @@ import { BlogCollection } from "../../models/model";
 
 export default class BlogContainer extends Component {
   state = {};
+
+  updateBlogCollection = () => {
+    //get request: get from server, replace the collection, refresh the blogContainer component.
+  };
   render() {
     const BlogCollection: BlogCollection[] = [
       {
@@ -62,7 +66,7 @@ export default class BlogContainer extends Component {
     ];
     return (
       <div>
-        <NewBlog />
+        <NewBlog updateBlogCollection={this.updateBlogCollection} />
         {BlogCollection.map((collection: BlogCollection, index: number) => {
           return <Section sectionData={collection} key={index} />;
         })}

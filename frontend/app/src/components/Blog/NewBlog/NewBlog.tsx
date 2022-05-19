@@ -7,9 +7,11 @@ import {
 } from "@ant-design/icons";
 import style from "./index.module.scss";
 import { BlogData } from "../../../models/model";
-export default class NewBlog extends Component {
+import Blog from "../Blog/Blog";
+export default class NewBlog extends Component<any>{
   state = {
     blogContent: "",
+    blogUser: "",
     blogSection: "Mood",
     items: [
       {
@@ -30,23 +32,28 @@ export default class NewBlog extends Component {
       },
     ],
   };
-  onChange = (e: any) => {
+  updateContent = (e: any) => {
     this.setState({ blogContent: e.target.value });
   };
+  updateName = (e: any) => {
+    this.setState({ blogUser: e.target.value });
+  };
   submit = () => {
-    console.log(this.state.blogContent);
     const newBlog: BlogData = {
-      user: "test user",
+      user: this.state.blogUser||'Anonymous',
       content: this.state.blogContent,
     };
-    //update the blogCollection list.
-    this.setState({ blogContent: "" });
+    console.log(newBlog);
+    //post request: new blog with section 
+    // await and call updateBlogCollection
+    this.props.updateBlogCollection();
+    this.setState({ blogContent: "", blogUser: "" });
   };
   updateSection = (e: any) => {
     this.setState({ blogSection: this.state.items[Number(e.key) - 1].label });
   };
   render() {
-    const { blogContent, blogSection, items } = this.state;
+    const { blogContent, blogSection, items, blogUser } = this.state;
     const {
       app,
       blogOptions,
@@ -56,6 +63,7 @@ export default class NewBlog extends Component {
       upload,
       blogTextBox,
       userAvatar,
+      user,
     } = style;
     const menu = <Menu onClick={this.updateSection} items={items} />;
     const { TextArea } = Input;
@@ -72,13 +80,22 @@ export default class NewBlog extends Component {
             style={{ width: 500, margin: "auto" }}
             placeholder="Say something..."
             autoSize={{ minRows: 2, maxRows: 6 }}
-            onChange={this.onChange}
+            onChange={this.updateContent}
             size={"small"}
           />
           <br />
         </div>
         <div className={blogOptions}>
           <div className={options}>
+            <div className={user}>
+              <Input
+                size="small"
+                placeholder="Anonymous"
+                value={blogUser}
+                onChange={this.updateName}
+                maxLength={12}
+              />
+            </div>
             <div className={tagDropdown}>
               <Dropdown overlay={menu}>
                 <a onClick={(e) => e.preventDefault()}>{blogSection}</a>
