@@ -8,7 +8,7 @@ import {
 import style from "./index.module.scss";
 import { BlogData } from "../../../models/model";
 import Blog from "../Blog/Blog";
-export default class NewBlog extends Component {
+export default class NewBlog extends Component<any>{
   state = {
     blogContent: "",
     blogUser: "",
@@ -40,10 +40,13 @@ export default class NewBlog extends Component {
   };
   submit = () => {
     const newBlog: BlogData = {
-      user: this.state.blogUser,
+      user: this.state.blogUser||'Anonymous',
       content: this.state.blogContent,
     };
-    //update the blogCollection list.
+    console.log(newBlog);
+    //post request: new blog with section 
+    // await and call updateBlogCollection
+    this.props.updateBlogCollection();
     this.setState({ blogContent: "", blogUser: "" });
   };
   updateSection = (e: any) => {
