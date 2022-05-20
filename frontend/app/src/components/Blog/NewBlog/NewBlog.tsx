@@ -76,7 +76,7 @@ export default class NewBlog extends Component<any>{
           <TextArea
             value={blogContent}
             showCount={true}
-            maxLength={100}
+            maxLength={300}
             style={{ width: 500, margin: "auto" }}
             placeholder="Say something..."
             autoSize={{ minRows: 2, maxRows: 6 }}
