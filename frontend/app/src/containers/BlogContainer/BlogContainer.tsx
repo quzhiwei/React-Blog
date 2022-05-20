@@ -16,7 +16,10 @@ export default class BlogContainer extends Component {
         value: [
           {
             user: "Jasasdasdasdads",
-            content: "hello my name is Jas qweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweq",
+            content: "hello my name is Jas qweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweq",
+            comments:[
+              'this is a testing comment from xyz'
+            ]
           },
           {
             user: "Kin",
