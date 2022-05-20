@@ -3,10 +3,12 @@ import style from "./index.module.scss";
 export default class Blog extends Component<any> {
   render() {
     const { user, content } = this.props.blog;
-    const { app } = style;
+    const { blog } = style;
     return (
-      <div className={app}>
-        {user}:{content}
+      <div className={blog}>
+        {user}
+        <br />
+        {content}
       </div>
     );
   }

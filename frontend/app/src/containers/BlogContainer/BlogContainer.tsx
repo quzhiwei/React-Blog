@@ -15,8 +15,8 @@ export default class BlogContainer extends Component {
         key: "Daily",
         value: [
           {
-            user: "Jas",
-            content: "hello my name is Jas ",
+            user: "Jasasdasdasdads",
+            content: "hello my name is Jas qweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweqweq",
           },
           {
             user: "Kin",
