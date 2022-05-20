@@ -1,6 +1,7 @@
 export type BlogData = {
   user: string;
   content: string;
+  comments?:string[];
 };
 
 export type BlogCollection = {
