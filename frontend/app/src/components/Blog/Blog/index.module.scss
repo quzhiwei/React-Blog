@@ -9,18 +9,15 @@
   word-break: break-all;
 }
 .blogOption {
-  margin:1rem 0 ;
+  margin:1rem 0 0 ;
   padding: 0.25rem 0;
   border-top:1px solid black;
   display: flex;
 }
 
-.commentButton{
+.pointerCursor{
   :hover{
     cursor: pointer;
   }
 
-}
-.viewComment{
-  
 }
